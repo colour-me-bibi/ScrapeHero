@@ -1,0 +1,1 @@
+CHORUS_URL = 'https://chorus.fightthe.pw/'
