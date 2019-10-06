@@ -6,8 +6,10 @@ class ChorusSpider(scrapy.Spider):
     start_urls = [constant.CHORUS_URL]
 
     def parse(self, response):
-        songs = response.xpath("//div[@class='Song']").extract()
+        songs = response.xpath(f"//div[@class='{constant.SONG_DIV_CLASS}']").extract()
 
-        yield {
-            'songs': songs
-        }
+        for song in songs:
+            yield {
+                'song': song
+            }
+

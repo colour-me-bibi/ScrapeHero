@@ -83,9 +83,11 @@ class ScrapeheroDownloaderMiddleware(object):
         if request.url != constant.CHORUS_URL:
             return None
 
+        # TODO click on Random, scrape, then click more, scrape, repeat indefinitely
+
         driver.get(request.url)
         WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, "//div[@class='Song']"))
+            EC.presence_of_element_located((By.XPATH, f"//div[@class='{constant.SONG_DIV_CLASS}']"))
         )
 
         body = driver.page_source
