@@ -80,18 +80,7 @@ class ScrapeheroDownloaderMiddleware(object):
         return s
 
     def process_request(self, request, spider):
-        if request.url != constant.CHORUS_URL:
-            return None
-
-        # TODO click on Random, scrape, then click more, scrape, repeat indefinitely
-
-        driver.get(request.url)
-        WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, f"//div[@class='{constant.SONG_DIV_CLASS}']"))
-        )
-
-        body = driver.page_source
-        return HtmlResponse(driver.current_url, body=body, encoding='utf-8', request=request)
+        return None
 
     def process_response(self, request, response, spider):
         # Called with the response returned from the downloader.
