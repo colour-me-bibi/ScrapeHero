@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from scrapy.crawler import CrawlerProcess
 from ScrapeHero.items import SongItem
 from ScrapeHero import constant
 
@@ -44,7 +45,7 @@ class ChorusSpider(scrapy.Spider):
             yield item
 
         iterator = 0
-        while iterator < 2:
+        while iterator < 1:
             more = self.driver.find_element_by_link_text('Gimme moar random')
 
             try:
