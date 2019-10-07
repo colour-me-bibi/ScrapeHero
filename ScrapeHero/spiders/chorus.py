@@ -11,9 +11,8 @@ class ChorusSpider(scrapy.Spider):
     name = 'chorus-spider'
     start_urls = [constant.CHORUS_URL]
 
-    # TODO click link "Gimme moar random" then parse again
-    # TODO click on Random, scrape, then click more, scrape, repeat indefinitely
     # TODO implement pipeline to MongoDB database
+    # TODO implement running multiple spiders concurrently and repeating the process
 
     def __init__(self):
         options = webdriver.ChromeOptions()
