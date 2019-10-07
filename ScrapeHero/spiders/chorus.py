@@ -32,21 +32,20 @@ class ChorusSpider(scrapy.Spider):
             EC.presence_of_element_located((By.XPATH, f"//div[@class='{constant.SONG_DIV_CLASS}']"))
         )
 
-        # TODO get songs by through driver.page_source
         songs = self.driver.find_elements_by_xpath(f"//div[@class='{constant.SONG_DIV_CLASS}']")
 
         for song in songs:
             item = SongItem()
 
-            item['url'] = song.find_element_by_xpath(
-                "div[@class='Song__charter']//a").get_attribute('href')
             item['md5_hash'] = song.find_element_by_xpath(
                 "div[@class='Song__hash']").text.split(' ')[2]
+            item['url'] = song.find_element_by_xpath(
+                "div[@class='Song__charter']//a").get_attribute('href')
 
             yield item
 
         iterator = 0
-        while iterator < 3:
+        while iterator < 2:
             more = self.driver.find_element_by_link_text('Gimme moar random')
 
             try:
@@ -56,16 +55,15 @@ class ChorusSpider(scrapy.Spider):
                     EC.presence_of_element_located((By.XPATH, f"//div[@class='{constant.SONG_DIV_CLASS}']"))
                 )
 
-                # TODO get songs by through driver.page_source
                 songs = self.driver.find_elements_by_xpath(f"//div[@class='{constant.SONG_DIV_CLASS}']")
 
                 for song in songs:
                     item = SongItem()
-
-                    item['url'] = song.find_element_by_xpath(
-                        "div[@class='Song__charter']//a").get_attribute('href')
+                    
                     item['md5_hash'] = song.find_element_by_xpath(
                         "div[@class='Song__hash']").text.split(' ')[2]
+                    item['url'] = song.find_element_by_xpath(
+                        "div[@class='Song__charter']//a").get_attribute('href')
 
                     yield item
 
