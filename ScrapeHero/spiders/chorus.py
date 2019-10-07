@@ -44,8 +44,7 @@ class ChorusSpider(scrapy.Spider):
 
             yield item
 
-        iterator = 0
-        while iterator < 1:
+        while True:
             more = self.driver.find_element_by_link_text('Gimme moar random')
 
             try:
@@ -66,8 +65,6 @@ class ChorusSpider(scrapy.Spider):
                         "div[@class='Song__charter']//a").get_attribute('href')
 
                     yield item
-
-                iterator = iterator + 1
 
             except:
                 break
