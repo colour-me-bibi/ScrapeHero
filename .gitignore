@@ -1,5 +1,2 @@
 # Ignore generated pycache
 __pycache__/
-
-# Ignore test output
-output.json
